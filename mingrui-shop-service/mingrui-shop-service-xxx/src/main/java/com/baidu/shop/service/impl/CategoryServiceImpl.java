@@ -2,7 +2,9 @@ package com.baidu.shop.service.impl;
 
 import com.baidu.shop.base.BaseApiService;
 import com.baidu.shop.base.Result;
+import com.baidu.shop.entity.CategoryBrandEntity;
 import com.baidu.shop.entity.CategoryEntity;
+import com.baidu.shop.mapper.CategoryBrandMapper;
 import com.baidu.shop.mapper.CategoryMapper;
 import com.baidu.shop.service.CategoryService;
 import com.baidu.shop.utils.ObjectUtil;
@@ -25,6 +27,9 @@ import java.util.List;
 public class CategoryServiceImpl extends BaseApiService implements CategoryService {
     @Autowired
     private CategoryMapper categoryMapper;
+
+    @Autowired
+    private CategoryBrandMapper categoryBrandMapper;
 
     @Override
     public Result<List<CategoryEntity>> getByBrand(Integer brandId) {
@@ -74,7 +79,10 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
         CategoryEntity categoryEntity = categoryMapper.selectByPrimaryKey(id);
 
         //查看当前节点是否有绑定分类信息 如果有则不能删除
-
+        Example example1 = new Example(CategoryBrandEntity.class);
+        example1.createCriteria().andEqualTo("categoryId",id);
+        List<CategoryBrandEntity> categoryBrandEntities = categoryBrandMapper.selectByExample(example1);
+        if (categoryBrandEntities.size() >= 1) return this.setResultError("有绑定信息不能删除");
 
 
         //如果查询不到数据也会执行null 例如传一个大于数据库里数据的Id 这时候就有次问题了
