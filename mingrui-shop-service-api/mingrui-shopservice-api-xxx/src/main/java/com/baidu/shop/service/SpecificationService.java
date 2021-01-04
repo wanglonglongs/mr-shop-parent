@@ -50,6 +50,6 @@ public interface SpecificationService {
     Result<JSONObject> specparamUpdate(@RequestBody SpecParamDTO specParamDTO);
 
     @ApiOperation(value = "删除规格参数")
-    @PostMapping(value = "specparams/delete")
+    @DeleteMapping(value = "specparams/delete")
     Result<JSONObject> specparamDelete(Integer id);
 }
