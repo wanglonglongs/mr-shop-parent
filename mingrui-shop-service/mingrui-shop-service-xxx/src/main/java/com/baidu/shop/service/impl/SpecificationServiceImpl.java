@@ -5,7 +5,10 @@ import com.baidu.shop.base.BaseApiService;
 import com.baidu.shop.base.Result;
 import com.baidu.shop.entity.SpecGroupDTO;
 import com.baidu.shop.entity.SpecGroupEntity;
+import com.baidu.shop.entity.SpecParamDTO;
+import com.baidu.shop.entity.SpecParamEntity;
 import com.baidu.shop.mapper.SpecGroupMapper;
+import com.baidu.shop.mapper.SpecParamMapper;
 import com.baidu.shop.service.SpecificationService;
 import com.baidu.shop.utils.BeanCopy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,45 @@ import java.util.List;
 public class SpecificationServiceImpl extends BaseApiService implements SpecificationService {
     @Autowired
     private SpecGroupMapper specGroupMapper;
+
+    @Autowired
+    private SpecParamMapper specParamMapper;
+
+
+    @Override
+    @Transactional
+    public Result<JSONObject> specparamUpdate(SpecParamDTO specParamDTO) {
+        specParamMapper.updateByPrimaryKeySelective(BeanCopy.copyProperties(specParamDTO,SpecParamEntity.class));
+        return this.setResultSuccess();
+    }
+
+    @Override
+    @Transactional
+    public Result<JSONObject> specparamDelete(Integer id) {
+        Example example = new Example(SpecParamEntity.class);
+        example.createCriteria().andEqualTo("groupId",id);
+        List<SpecParamEntity> list = specParamMapper.selectByExample(example);
+        if (list.size() >= 1) return this.setResultError("有绑定不能删除");
+        specParamMapper.deleteByPrimaryKey(id);
+        return this.setResultSuccess();
+    }
+
+    @Override
+    @Transactional
+    public Result<JSONObject> specparamSave(SpecParamDTO specParamDTO) {
+        specParamMapper.insertSelective(BeanCopy.copyProperties(specParamDTO,SpecParamEntity.class));
+        return this.setResultSuccess();
+    }
+
+    @Override
+    public Result<List<SpecParamEntity>> specparamList(SpecParamDTO specParamDTO) {
+        Example example = new Example(SpecParamEntity.class);
+        example.createCriteria().andEqualTo("groupId",(BeanCopy.copyProperties(specParamDTO,SpecParamEntity.class).getGroupId()));
+        List<SpecParamEntity> list = specParamMapper.selectByExample(example);
+        return setResultSuccess(list);
+    }
+
+    //--------------------------------------------------------------
 
     @Override
     @Transactional
