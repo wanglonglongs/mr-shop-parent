@@ -43,4 +43,5 @@ public interface CategoryService {
     @PostMapping(value = "category/save")
         //声明哪个组下面的参数参加校验-->当前是校验新增组
     Result<JsonObject> saveCategory(@Validated({MingruiOperation.Add.class})@RequestBody CategoryEntity entity);
+
 }
