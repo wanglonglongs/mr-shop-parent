@@ -5,9 +5,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.baidu.shop.base.Result;
 import com.baidu.shop.entity.BrandDTO;
 import com.baidu.shop.entity.BrandEntity;
+import com.baidu.shop.validate.group.MingruiOperation;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,11 +29,11 @@ public interface BrandService {
 
     @ApiOperation("新增品牌")
     @PostMapping("brand/save")
-    Result<JSONObject> save(@RequestBody BrandDTO brandDTO);
+    Result<JSONObject> save(@Validated({MingruiOperation.Add.class})@RequestBody BrandDTO brandDTO);
 
     @ApiOperation("修改品牌")
     @PutMapping("brand/save")
-    Result<JSONObject> update(@RequestBody BrandDTO brandDTO);
+    Result<JSONObject> update(@Validated({MingruiOperation.Update.class})@RequestBody BrandDTO brandDTO);
 
     @ApiOperation("删除品牌")
     @DeleteMapping("brand/deleteById")
