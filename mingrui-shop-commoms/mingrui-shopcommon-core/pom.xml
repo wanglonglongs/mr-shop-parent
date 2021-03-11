@@ -12,6 +12,12 @@
     <artifactId>mingrui-shopcommon-core</artifactId>
     <dependencies>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+
+
         <!--帮助开发人员快速生成API文档-->
         <dependency>
             <groupId>io.springfox</groupId>

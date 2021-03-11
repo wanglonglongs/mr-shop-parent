@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 
 /**
@@ -28,5 +29,7 @@ public class SpecGroupDTO extends BaseDTO {
     @ApiModelProperty(value = "规格组名称")
     @NotEmpty(message = "规格组名称不能为空",groups = {MingruiOperation.Add.class})
     private String name;
+
+    private List<SpecParamEntity> specList;
 
 }

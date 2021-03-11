@@ -10,6 +10,7 @@ import com.baidu.shop.mapper.BrandMapper;
 import com.baidu.shop.mapper.CategoryBrandMapper;
 import com.baidu.shop.service.BrandService;
 import com.baidu.shop.utils.BeanCopy;
+import com.baidu.shop.utils.ObjectUtil;
 import com.baidu.shop.utils.PinyinUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @ClassName BrandServiceImpl
@@ -36,6 +39,15 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
 
     @Autowired
     private CategoryBrandMapper categoryBrandMapper;
+
+    @Override
+    public Result<List<BrandEntity>> getBrandByIds(String brandIds) {
+        List<Integer> brand = Arrays.asList(brandIds.split(",")).stream().map(ids -> Integer.parseInt(ids)).collect(Collectors.toList());
+
+        List<BrandEntity> brandList = brandMapper.selectByIdList(brand);
+
+        return this.setResultSuccess(brandList);
+    }
 
     @Override
     public Result<List<BrandEntity>> getBrandInfoByCategoryId(Integer cid) {
@@ -94,31 +106,34 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
     public Result<PageInfo<BrandEntity>> query(BrandDTO brandDTO) {
 
         //分页
-        PageHelper.startPage(brandDTO.getPage(),brandDTO.getRows());
+        if (!ObjectUtil.isNull(brandDTO.getPage()) && !ObjectUtil.isNull(brandDTO.getRows()))
+            PageHelper.startPage(brandDTO.getPage(),brandDTO.getRows());
+//        String isOrder = "asc";
+        if (!StringUtils.isEmpty(brandDTO.getSort())){
+//            if (Boolean.valueOf(brandDTO.getOrder())){
+//                isOrder = "desc";
+//            }
+            PageHelper.orderBy(brandDTO.getOrderBy());
+        }
+
 
         BrandEntity brandEntity = BeanCopy.copyProperties(brandDTO, BrandEntity.class);
+
         Example example = new Example(BrandEntity.class);
         Example.Criteria criteria = example.createCriteria();
-        if(!StringUtils.isEmpty(brandDTO.getSort()))
-            // BrandEntity brandEntity = new BrandEntity();
-//        brandDTO.setId(brandEntity.getId());
-//        brandDTO.setName(brandEntity.getName());
-            //排序
-//        if (!StringUtil.isEmpty(brandDTO.getSort())){
-//            String order = "asc";
-//            if (Boolean.valueOf(brandDTO.getOrder())){
-//                order = "desc";
-//            }else{
-//                order = "asc";
-//            }
-//        }
-            PageHelper.orderBy(brandDTO.getSort() + " " + (Boolean.valueOf(brandDTO.getOrder()) ? "desc" : "asc"));
 
-        criteria.andLike("name","%"+brandDTO.getName()+"%");
+        if(!StringUtils.isEmpty(brandEntity.getName()))
+            criteria.andLike("name","%" + brandEntity.getName() + "%");
 
-        List<BrandEntity> list = brandMapper.selectByExample(example);
+        if(ObjectUtil.isNotNull(brandDTO.getId()))
+            criteria.andEqualTo("id",brandDTO.getId());
 
-        PageInfo<BrandEntity> pageInfo = new PageInfo<>(list);
+        if (!ObjectUtil.isNull(brandDTO.getName())){}
+
+
+        List<BrandEntity> brandEntities = brandMapper.selectByExample(example);
+
+        PageInfo<BrandEntity> pageInfo = new PageInfo<>(brandEntities);
 
         return this.setResultSuccess(pageInfo);
     }

@@ -62,15 +62,21 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
 
     @Override
     public Result<List<SpecParamEntity>> specparamList(SpecParamDTO specParamDTO) {
+        SpecParamEntity specParamEntity = BeanCopy.copyProperties(specParamDTO, SpecParamEntity.class);
+
         Example example = new Example(SpecParamEntity.class);
         Example.Criteria criteria = example.createCriteria();
 
         if(ObjectUtil.isNotNull(specParamDTO.getGroupId()));
-        criteria.andEqualTo("groupId",(BeanCopy.copyProperties(specParamDTO,SpecParamEntity.class).getGroupId()));
+        criteria.andEqualTo("groupId",(specParamEntity.getGroupId()));
 
 
         if(ObjectUtil.isNotNull(specParamDTO.getCid()));
-        criteria.andEqualTo("cid",specParamDTO.getCid());
+        criteria.andEqualTo("cid",specParamEntity.getCid());
+
+        if(ObjectUtil.isNotNull(specParamDTO.getGeneric())){
+            criteria.andEqualTo("generic",specParamEntity.getGeneric());
+        }
 
         List<SpecParamEntity> list = specParamMapper.selectByExample(example);
         return setResultSuccess(list);
