@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basic-eureka-server/mingrui-shop-basic-eureka-server.iml" filepath="$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basic-eureka-server/mingrui-shop-basic-eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basic-upload-server/mingrui-shop-basic-upload-server.iml" filepath="$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basic-upload-server/mingrui-shop-basic-upload-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basic-zuul-server/mingrui-shop-basic-zuul-server.iml" filepath="$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basic-zuul-server/mingrui-shop-basic-zuul-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basics.iml" filepath="$PROJECT_DIR$/mingrui-shop-basics/mingrui-shop-basics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-commoms/mingrui-shop-commoms.iml" filepath="$PROJECT_DIR$/mingrui-shop-commoms/mingrui-shop-commoms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-parent.iml" filepath="$PROJECT_DIR$/mingrui-shop-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service.iml" filepath="$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api.iml" filepath="$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api-search/mingrui-shop-service-api-search.iml" filepath="$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api-search/mingrui-shop-service-api-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api-template/mingrui-shop-service-api-template.iml" filepath="$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api-template/mingrui-shop-service-api-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api-user/mingrui-shop-service-api-user.iml" filepath="$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shop-service-api-user/mingrui-shop-service-api-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-search/mingrui-shop-service-search.iml" filepath="$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-search/mingrui-shop-service-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-template/mingrui-shop-service-template.iml" filepath="$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-template/mingrui-shop-service-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-user/mingrui-shop-service-user.iml" filepath="$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-user/mingrui-shop-service-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-xxx/mingrui-shop-service-xxx.iml" filepath="$PROJECT_DIR$/mingrui-shop-service/mingrui-shop-service-xxx/mingrui-shop-service-xxx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-commoms/mingrui-shopcommon-core/mingrui-shopcommon-core.iml" filepath="$PROJECT_DIR$/mingrui-shop-commoms/mingrui-shopcommon-core/mingrui-shopcommon-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shopservice-api-xxx/mingrui-shopservice-api-xxx.iml" filepath="$PROJECT_DIR$/mingrui-shop-service-api/mingrui-shopservice-api-xxx/mingrui-shopservice-api-xxx.iml" />
+    </modules>
+  </component>
+</project>
